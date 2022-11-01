@@ -2,38 +2,59 @@
 <html lang="es">
 
 <head>
+    <title>Conversor Github</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor Github</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
-    <h1>Conversor Github</h1>
-    <h2>La ventana se abre automaticamente al pegar el enlace:</h2>
+<body style="background-image:url(/img/wallpaper.png);   background-size: cover;
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;">
+    <main class = "mt-4 mb-4" style="opacity:0.90 ;">
+        <div class="container text-center col-lg-5 col-md-10 col-sm-12">
+            <div class="list-group-item p-3" style="filter: drop-shadow(3px 5px 5px black);">
+                <h3>Conversor de enlaces de Github</h3>
+                <img src="img/github.jpg" class="img-responsive mb-2" width="65%">
+                
+                <div class="col-12 mb-3">
+                        <input id="inputGithub" type="search" value="" placeholder="Input Automatico (ctrl + v)" required="required"
+                        onfocus="this.value=''" class="form-control">
+                </div>
 
-    <input id="inputGithub" type="search" value="" placeholder="Input Automatico (ctrl + v)" required="required"
-        onfocus="this.value=''" style="width: 60%; height: 5em;">
-        <br><br>
-        <h2>La ventana se abre automaticamente al presionar enter:</h2>
-    <input id="inputGithubManual" type="search" value="" placeholder="Input Manual (Tecla Enter)" required="required"
-        onfocus="this.value=''" style="width: 60%; height: 5em;">
+                <div class="col-12 mb-3">
+                        <input id="inputGithubManual" type="search" value="" placeholder="Input Manual (Tecla Enter)" required="required"
+                        onfocus="this.value=''" class="form-control">
+                </div>
+                <p>Convierte URLs de Github, Desde un proyecto a Github Pages y viceversa.
+                </p>
+                <p>Ejemplos de conversión:</p>
+                <p>Desde: <span style="color:red">https://user.github.io/proyect/index.html</span>
+                    Retorna: <span style="color:green">https://github.com/user/proyect</span>
+                </p>
 
-    <h2>Recibe URL de un Pages: <span style="color:red">https://user.github.io/proyect/index.html</span>
-        ,Y devuelve la URL del proyecto: <span style="color:green">https://github.com/user/proyect</span></h2>
-
-    <h2>Recibe URL de un proyecto: <span style="color:red">https://github.com/user/proyect</span> ,Y devuelve URL del
-        Pages: <span style="color:green">https://user.github.io/proyect</span></h2>
-    <h2>(No funciona si el proyecto tiene desactivado Github Pages)</h2>
+                <p>Desde: <span style="color:red">https://github.com/user/proyect</span>
+                    Retorna: <span style="color:green">https://user.github.io/proyect</span></p>
+                <p>(No funciona si el proyecto tiene desactivado Github Pages), Puedes presionar Tab, Ctrl + V para realizar la conversión inmediatamente.</p>
+                <p>Proyecto realizado por Rodrigo Aguilar <a href="https://www.linkedin.com/in/rodrigo-aguilar-91b09a252/"
+                    target="_blank">Linkedin</a> <a href="https://github.com/rodrigoaguilar11" target="_blank">GitHub</a></p>
+            </div>
+    </main>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         inputGithub.addEventListener("input", (e) => {
             generarGithubUrl("inputGithub");
-    })
-    
+        })
+
         //El Input manual se ejecuta al presionar Enter
         inputGithubManual.addEventListener("keydown", githubEnterDetect);
+
         function githubEnterDetect(e) {
             switch (e.key) {
                 case "Enter":
@@ -50,17 +71,17 @@
             userGithub = userGithub.substring(19, Infinity);
             let proyectGithub = userGithub;
 
-            userGithub = userGithub.substring(0, userGithub.indexOf('/')); 
-            proyectGithub = proyectGithub.substring(proyectGithub.indexOf('/'), Infinity); 
+            userGithub = userGithub.substring(0, userGithub.indexOf('/'));
+            proyectGithub = proyectGithub.substring(proyectGithub.indexOf('/'), Infinity);
             window.open("https://" + userGithub + ".github.io" + proyectGithub);
         } //https://user.github.io/proyect/index a: https://github.com/user/proyect
         else {
             userGithub = userGithub.substring(8, Infinity);
-            let proyectGithub = userGithub; 
+            let proyectGithub = userGithub;
 
-            userGithub = userGithub.substring(0, userGithub.indexOf('.')); 
-            proyectGithub = proyectGithub.substring(proyectGithub.indexOf('/') + 1, Infinity); 
-            proyectGithub = proyectGithub.substring(0, proyectGithub.indexOf('/')); 
+            userGithub = userGithub.substring(0, userGithub.indexOf('.'));
+            proyectGithub = proyectGithub.substring(proyectGithub.indexOf('/') + 1, Infinity);
+            proyectGithub = proyectGithub.substring(0, proyectGithub.indexOf('/'));
             window.open("https://github.com/" + userGithub + "/" + proyectGithub);
         }
     }
