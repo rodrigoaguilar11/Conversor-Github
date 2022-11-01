@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 
@@ -23,14 +22,17 @@
                 <img src="img/github.jpg" class="img-responsive mb-2" width="65%">
 
                 <div class="col-12 mb-3">
-                    <input id="inputGithub" type="search" value="" placeholder="Input Automatico (ctrl + v)"
+                    <input id="inputGithub" type="search" value="" placeholder="Input Automatico (ctrl + v)."
                         required="required" onfocus="this.value=''" class="form-control">
                 </div>
 
                 <div class="col-12 mb-3">
-                    <input id="inputGithubManual" type="search" value="" placeholder="Input Manual (Tecla Enter)"
-                        required="required" onfocus="this.value=''" class="form-control">
+                    <input id="inputGithubManual" type="search" value=""
+                        placeholder="Input Manual (Tecla Enter o presionando el botón)." required="required"
+                        onfocus="this.value=''" class="form-control">
                 </div>
+                <button type="button" class="btn btn-primary form-control mb-3" onclick="pressButton()">Convertir Enlace</button>
+
                 <p>Convierte URLs de Github, Desde un proyecto a Github Pages y viceversa.
                 </p>
                 <p>Ejemplos de conversión:</p>
@@ -50,6 +52,8 @@
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+
+       
         inputGithub.addEventListener("input", (e) => {
             generarGithubUrl("inputGithub");
         })
@@ -87,6 +91,10 @@
             window.open("https://github.com/" + userGithub + "/" + proyectGithub);
         }
     }
+    function pressButton() {
+            generarGithubUrl("inputGithubManual");
+            document.getElementById("inputGithubManual").value = "";
+        }
 </script>
 
 </html>
