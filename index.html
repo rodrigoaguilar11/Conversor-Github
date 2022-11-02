@@ -74,20 +74,18 @@
         let userGithub = document.getElementById(id).value;
         //https://github.com/user/proyect a: https://user.github.io/proyect
         if (userGithub.includes("https://github.com/")) {
-            userGithub = userGithub.substring(19, Infinity);
+            userGithub = userGithub.split("https://github.com/")[1];
             let proyectGithub = userGithub;
-
-            userGithub = userGithub.substring(0, userGithub.indexOf('/'));
-            proyectGithub = proyectGithub.substring(proyectGithub.indexOf('/'), Infinity);
-            window.open("https://" + userGithub + ".github.io" + proyectGithub);
+            userGithub = userGithub.split("/")[0];
+            proyectGithub = proyectGithub.split("/")[1];
+            window.open("https://" + userGithub + ".github.io/" + proyectGithub);
         } //https://user.github.io/proyect/index a: https://github.com/user/proyect
         else {
-            userGithub = userGithub.substring(8, Infinity);
+            userGithub = userGithub.split("https://")[1];
             let proyectGithub = userGithub;
-
-            userGithub = userGithub.substring(0, userGithub.indexOf('.'));
-            proyectGithub = proyectGithub.substring(proyectGithub.indexOf('/') + 1, Infinity);
-            proyectGithub = proyectGithub.substring(0, proyectGithub.indexOf('/'));
+            userGithub = userGithub.split(".")[0];
+            proyectGithub = proyectGithub.split("/")[1];
+            proyectGithub = proyectGithub.split("/")[0];
             window.open("https://github.com/" + userGithub + "/" + proyectGithub);
         }
     }
